@@ -1,17 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import {Route, Routes} from "react-router-dom";
 import {UserInfo} from "./components/UserInfo";
+import {Route, Routes} from "react-router-dom";
 import {CandidatesList} from "./components/CandidatesList";
 
 function App() {
   return (
-      <div className="App">
+    <div className="App">
+      <header className="App-header">
           <Routes>
-              <Route path="/" element={<UserInfo/>} exact/>
-              <Route path="/previousCandidates" element={CandidatesList}/>
+              <Route path={'/'} element={<UserInfo/>}/>
+              <Route path={'/:userId'} element={<UserInfo/>}/>
+              <Route path={'/previousCandidates'} element={<CandidatesList/>}/>
           </Routes>
-      </div>
+      </header>
+    </div>
   );
 }
 

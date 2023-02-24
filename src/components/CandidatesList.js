@@ -1,4 +1,5 @@
 import {List, ListItem, ListItemText} from "@mui/material";
+import {Link} from "react-router-dom";
 
 export function CandidatesList(props) {
     const candidates = JSON.parse(localStorage.getItem('persons'));
@@ -9,7 +10,7 @@ export function CandidatesList(props) {
                 {candidates?.map(candidate => {
                     return (<ListItem>
                         <ListItemText>
-                            {candidate?.name?.first} {candidate?.name?.last}
+                            <Link to={`/${candidate.id}`}>{candidate?.name?.first} {candidate?.name?.last}</Link>
                         </ListItemText>
                     </ListItem>)
                 })}

@@ -25,7 +25,7 @@ export function OptionalComments(props) {
                         <CloseIcon/>
                     </IconButton>
                     <h1>Optional Comments:</h1>
-                    <TextField value={comments} onChange={(event => setComments(event.target.value))} placeholder={'Enter any comments about the candidate (optional)'}></TextField>
+                    <TextField value={comments} onChange={(event => setComments(event.target.value))} placeholder={'Enter any comments about the candidate (optional)'}/>
                     <Button title={'Submit'} color={'success'} onClick={() => props.handleOptionalComments(comments)}>Submit</Button>
                 </Box>
         </>
