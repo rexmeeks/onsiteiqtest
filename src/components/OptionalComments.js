@@ -1,4 +1,4 @@
-import {Box, Button, IconButton, TextField} from "@mui/material";
+import {Box, Button, Grid, IconButton, TextField} from "@mui/material";
 import {useState} from "react";
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -7,7 +7,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: {xs: '90vw', sm: '80vw', md: '50vw'},
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -20,14 +20,26 @@ export function OptionalComments(props) {
 
     return (
         <>
-                <Box sx={style}>
-                    <IconButton onClick={props.handleClose}>
-                        <CloseIcon/>
-                    </IconButton>
-                    <h1>Optional Comments:</h1>
-                    <TextField value={comments} onChange={(event => setComments(event.target.value))} placeholder={'Enter any comments about the candidate (optional)'}/>
-                    <Button title={'Submit'} color={'success'} onClick={() => props.handleOptionalComments(comments)}>Submit</Button>
-                </Box>
+            <Box sx={style}>
+                <Grid container alignItems={'center'}>
+                    <Grid item xs={1}>
+                        <IconButton onClick={props.handleClose}>
+                            <CloseIcon/>
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={11} sx={{ml: 'auto'}}>
+                        <h1>Optional Comments</h1>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField value={comments} onChange={(event => setComments(event.target.value))}
+                                   placeholder={'Enter any comments about the candidate (optional)'} fullWidth multiline/>
+                    </Grid>
+                    <Grid item>
+                        <Button name={'Submit'} color={'success'}
+                                onClick={() => props.handleOptionalComments(comments)}>Submit</Button>
+                    </Grid>
+                </Grid>
+            </Box>
         </>
     )
 }
