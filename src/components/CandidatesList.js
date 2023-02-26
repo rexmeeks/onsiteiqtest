@@ -17,7 +17,7 @@ export function CandidatesList(props) {
         <>
             <Grid container spacing={2} sx={{mt: 1, mb: 1, alignItems: 'center', justifyContent: 'center', width: {xs: '95vw', sm: '80vw', md:'50vw'}}}>
                 <Grid item justifyContent={'flex-start'}>
-                    <Button title={'Back'} variant={'outlined'} onClick={() => navigate(-1)}>Back</Button>
+                    <Button name={'Back'} variant={'outlined'} onClick={() => navigate(-1)}>Back</Button>
                 </Grid>
                 <Grid item>
                     <Typography variant={'h5'} className='App-info'>Previous Candidates</Typography>
@@ -25,8 +25,8 @@ export function CandidatesList(props) {
             </Grid>
             <List>
                 {candidates?.map(candidate => {
-                    return (<ListItem>
-                            <Link to={`/${candidate.id}`} style={{textDecoration: 'none'}}>
+                    return (<ListItem key={candidate.id}>
+                            <Link data-testid='candidate-link' to={`/${candidate.id}`} style={{textDecoration: 'none'}}>
                                 <Card sx={{backgroundColor: '#2f343e', color:'white', maxWidth: '95vw', width: {xs: '95vw', sm: '80vw', md:'50vw'}}}>
                                     <CardContent>
                                         <Grid container spacing={1} direction="row" alignItems="flex-start">
@@ -37,8 +37,10 @@ export function CandidatesList(props) {
                                                     width: 50,
                                                     maxHeight: {xs: 233, md: 167},
                                                     maxWidth: {xs: 350, md: 250},
-                                                    alignItems: 'center'
-                                                }} src={candidate?.picture?.medium}>
+                                                    alignItems: 'center',
+                                                }}
+                                                     alt={candidate?.name?.first + ' ' + candidate?.name?.last}
+                                                     src={candidate?.picture?.medium}>
                                                 </Box>
                                             </Grid>
                                             <Grid container item xs={9}>

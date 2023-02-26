@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {Box, Button, Grid, Modal, Typography} from "@mui/material";
-import {OptionalComments} from "./OptionalComments";
+import {OptionalComments} from "./modals/OptionalComments";
 import axios from "axios";
 import {useNavigate, useParams} from 'react-router-dom';
 import {nanoid} from "nanoid";

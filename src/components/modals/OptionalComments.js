@@ -31,7 +31,7 @@ export function OptionalComments(props) {
                         <h1>Optional Comments</h1>
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField value={comments} onChange={(event => setComments(event.target.value))}
+                        <TextField name={'Comments'} value={comments} onChange={(event => setComments(event.target.value))}
                                    placeholder={'Enter any comments about the candidate (optional)'} fullWidth multiline/>
                     </Grid>
                     <Grid item>
