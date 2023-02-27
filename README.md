@@ -16,13 +16,13 @@
 
 <h5>Going through the app <sup><small>seriously</small></sup></h5>
 1. npm start</br>
-2. it'll open a page, if it doesn't navigate to localhost as said below
-3. You'll be presented with a candidate where you can either accept or reject them, or view previous candidates recently processed
-   1. accept => enter some additional comments, submit or close
-   2. reject => same as accept
+2. it'll open a page, if it doesn't navigate to localhost as said below</br>
+3. You'll be presented with a candidate where you can either accept or reject them, or view previous candidates recently processed</br>
+   1. accept => enter some additional comments, submit or close</br>
+   2. reject => same as accept</br>
    3. view previous candidates => goes to page where you can view previously decided upon candidates in a card colored to
-   reflect the decision that was made as well as showing comments that were made.
-      1. if you press the back button from this page either on the page or in the browser, it'll persist the user that you were on
+   reflect the decision that was made as well as showing comments that were made.</br>
+      1. if you press the back button from this page either on the page or in the browser, it'll persist the user that you were on</br>
 
 ## Notes
 * Used MUI because it's really nice with responsive design and it's one of the libraries I'm more familiar with and it makes
