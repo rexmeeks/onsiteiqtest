@@ -3,6 +3,9 @@
 Just the usual run create react app, pretty simple, I erased the ones you don't need
 
 ## Notes
+Used MUI because it's really nice with responsive design and it's one of the libraries I'm more familiar with and it makes
+the page look nice quickly
+
 During testing I was having issues trying to test that the navigate worked, and by issues I mean consulted almost every
 stackoverflow page I could find and couldn't figure it out. From what I saw though, it seems to be an issue
 with react router v6 and RTL. BUT, what I can do, that is essentially the same thing, if not better, is test
