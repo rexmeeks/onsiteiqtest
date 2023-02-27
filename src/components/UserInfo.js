@@ -40,12 +40,12 @@ export function UserInfo(props) {
     // id from local storage, OR the user could be navigating back from the previous candidate page, in which case
     // we maintain a currentUser in local storage so users can navigate about
     useEffect(() => {
-        if(!userId && !!JSON.parse(localStorage.getItem('currentUser'))) {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            setUser(currentUser);
-            setUserLocation(currentUser?.location)
-        }
-        else if (!user) {
+        if (!user) {
+            if (!userId && !!JSON.parse(localStorage.getItem('currentUser'))) {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                setUser(currentUser);
+                setUserLocation(currentUser?.location);
+            }
             if (userId) {
                 const foundUser = getUserById(userId);
                 setUser(foundUser);
@@ -59,7 +59,7 @@ export function UserInfo(props) {
 
     const openModal = (event) => {
         setIsOpen(true);
-        setUser({...user, "accepted": event.target.title === 'Accept'});
+        setUser({...user, "accepted": event.target.name === 'Accept'});
     }
 
     // here sits the logic that essentially "submits" a user after review

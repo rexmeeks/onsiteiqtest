@@ -30,7 +30,7 @@ export function CandidatesList(props) {
                 {candidates?.map(candidate => {
                     return (<ListItem key={candidate.id}>
                             <Link data-testid='candidate-link' to={`/${candidate.id}`} style={{textDecoration: 'none'}}>
-                                <Card sx={{backgroundColor: '#2f343e', color:'white', maxWidth: '95vw', width: {xs: '95vw', sm: '80vw', md:'50vw'}}}>
+                                <Card sx={{backgroundColor: candidate?.accepted ? '#72b56e' : '#ff4c4c', color:'white', maxWidth: '95vw', width: {xs: '95vw', sm: '80vw', md:'50vw'}}}>
                                     <CardContent>
                                         <Grid container spacing={1} direction="row" alignItems="flex-start">
                                             <Grid container item justifyContent={"center"} xs={3}>
@@ -50,7 +50,10 @@ export function CandidatesList(props) {
                                                     <Typography variant={'h4'}>{candidate?.name?.first} {candidate?.name?.last}</Typography>
                                                 </Grid>
                                                 <Grid item xs={12}>
-                                                    <Typography sx={{fontStyle: 'italic' }} className={'App-info'}>{candidate?.location?.city}, {candidate?.location?.state}, {candidate?.location?.country}</Typography>
+                                                    <Typography>Comments:</Typography>
+                                                </Grid>
+                                                <Grid item xs={12} zeroMinWidth>
+                                                    <Typography sx={{fontStyle: 'italic', color: '#282c34'}}>{candidate?.optionalComments}</Typography>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
