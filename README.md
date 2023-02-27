@@ -1,20 +1,22 @@
 # Getting Started with (Insert buzzword filled catchy title that is not <i>Create React App</i> and really gets the people going)
 
 <h5>Going through the app:</h5>
-1. run it (reference below)
-2. you will be presented with some person
-3. judge them based off their general information (psh. rude)
-4. accept them to work for us or send them to debtors prison (or, Canada, idk, that's not our department)
-5. realize you're an awful person for some of the previous decisions you made (in the app)
-   * accept that that's life
-   * click previous candidates
+
+1. run it (reference below)</br>
+2. you will be presented with some person</br>
+3. judge them based off their general information (psh. rude)</br>
+4. accept them to work for us or send them to debtors prison (or, Canada, idk, that's not our department)</br>
+5. realize you're an awful person for some of the previous decisions you made (in the app)</br>
+   * accept that that's life</br>
+   * click previous candidates</br>
    * find the poor soul you previously passed judgement upon, notice the color of their card reflects your decision and you can read
-   the comments you made in case you forgot them already
-   * click on them, this will take you back to the judgement page where you may decide to change your mind, or reject the candidate twice
-     * <small>this will just overwrite your previous decision so while we respect your strive to be as evil as possible, we'll only ever note it down once</small>
-6. do this forever until we go bankrupt or you fall into a pit and can't get out
+   the comments you made in case you forgot them already</br>
+   * click on them, this will take you back to the judgement page where you may decide to change your mind, or reject the candidate twice</br>
+     * <small>this will just overwrite your previous decision so while we respect your strive to be as evil as possible, we'll only ever note it down once</small></br>
+6. do this forever until we go bankrupt or you fall into a pit and can't get out</br>
 
 <h5>Going through the app <sup><small>seriously</small></sup></h5>
+
 1. npm start</br>
 2. it'll open a page, if it doesn't navigate to localhost as said below</br>
 3. You'll be presented with a candidate where you can either accept or reject them, or view previous candidates recently processed</br>
