@@ -15,7 +15,7 @@
 6. do this forever until we go bankrupt or you fall into a pit and can't get out
 
 <h5>Going through the app <sup><small>seriously</small></sup></h5>
-1. npm start
+1. npm start</br>
 2. it'll open a page, if it doesn't navigate to localhost as said below
 3. You'll be presented with a candidate where you can either accept or reject them, or view previous candidates recently processed
    1. accept => enter some additional comments, submit or close
