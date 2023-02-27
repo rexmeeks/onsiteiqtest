@@ -6,6 +6,14 @@ const setLocalStorage = (id, data) => {
     window.localStorage.setItem(id, JSON.stringify(data));
 };
 
+/*
+Was having issues trying to test that the navigate worked, and by issues I mean consulted almost every
+ stackoverflow page I could find and couldn't figure it out. From what I saw though, it seems to be an issue
+  with react router v6 and RTL. BUT, what I can do, that is essentially the same thing, if not better, is test
+   the actual app functionality without mocking much. So I made integration tests to compensate. If I was
+    working on a team though, I would have asked for help when I hit a wall.
+ */
+
 // had to define this everywhere, because using it globally messed up some of the tests
 const localStorageMock = (function () {
     let store = {};
@@ -81,11 +89,7 @@ const mockedUser =
         },
         "phone": "(590) 890-3852",
         "cell": "(802) 313-4617",
-        "userId": 'testUserId',
-        "id": {
-            "name": "SSN",
-            "value": "647-63-0607"
-        },
+        "id": 'testUserId',
         "picture": {
             "large": "https://randomuser.me/api/portraits/men/14.jpg",
             "medium": "https://randomuser.me/api/portraits/med/men/14.jpg",
@@ -96,14 +100,21 @@ const mockedUser =
 
 describe('Test that user info landing page works as expected', () => {
 
+    beforeEach(() => {
+        setLocalStorage('persons', [mockedUser]);
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks();
+        window.localStorage.removeItem('persons')
+    });
+
     it('renders page and checks for user card', (() => {
-        setLocalStorage('persons', [mockedUser])
         render(<CandidatesList />, {wrapper: BrowserRouter});
         expect(screen.getByText('Steven Steeves')).toBeInTheDocument();
     }))
 
     it('renders page and clicks on user', (() => {
-        setLocalStorage('persons', [mockedUser])
         render(<CandidatesList />, {wrapper: BrowserRouter});
         const candidateLink = screen.getByTestId('candidate-link');
         expect(candidateLink.href).toBe('http://localhost/testUserId');

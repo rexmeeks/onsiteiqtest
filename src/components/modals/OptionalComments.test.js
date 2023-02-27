@@ -1,13 +1,16 @@
 import {fireEvent, render, screen} from "@testing-library/react";
-import {CandidatesList} from "../CandidatesList";
 import {BrowserRouter} from "react-router-dom";
 import axios from "axios";
-import {OptionalComments} from "./OptionalComments";
 import {UserInfo} from "../UserInfo";
 
-const setLocalStorage = (id, data) => {
-    window.localStorage.setItem(id, JSON.stringify(data));
-};
+
+/*
+Was having issues trying to test that the navigate worked, and by issues I mean consulted almost every
+ stackoverflow page I could find and couldn't figure it out. From what I saw though, it seems to be an issue
+  with react router v6 and RTL. BUT, what I can do, that is essentially the same thing, if not better, is test
+   the actual app functionality without mocking much. So I made integration tests to compensate. If I was
+    working on a team though, I would have asked for help when I hit a wall.
+ */
 
 jest.mock('axios');
 
@@ -59,10 +62,7 @@ const mockedUser =
                 },
                 "phone": "(590) 890-3852",
                 "cell": "(802) 313-4617",
-                "id": {
-                    "name": "SSN",
-                    "value": "647-63-0607"
-                },
+                "id": 'testUserId2',
                 "picture": {
                     "large": "https://randomuser.me/api/portraits/men/14.jpg",
                     "medium": "https://randomuser.me/api/portraits/med/men/14.jpg",
@@ -79,71 +79,69 @@ const mockedUser =
         }
     }
 
-const mockedAxiosResponse = {
-    "results": [
+const mockedAxiosResponse =
     {
-        "gender": "female",
-        "name": {
-            "title": "Mrs",
-            "first": "Eleanor",
-            "last": "Williamson"
-        },
-        "location": {
-            "street": {
-                "number": 1974,
-                "name": "Ormond Quay"
+    "results": [
+        {
+            "gender": "female",
+            "name": {
+                "title": "Mrs",
+                "first": "Eleanor",
+                "last": "Williamson"
             },
-            "city": "Donabate",
-            "state": "Longford",
-            "country": "Ireland",
-            "postcode": 50323,
-            "coordinates": {
-                "latitude": "-1.0838",
-                "longitude": "71.4687"
+            "location": {
+                "street": {
+                    "number": 1974,
+                    "name": "Ormond Quay"
+                },
+                "city": "Donabate",
+                "state": "Longford",
+                "country": "Ireland",
+                "postcode": 50323,
+                "coordinates": {
+                    "latitude": "-1.0838",
+                    "longitude": "71.4687"
+                },
+                "timezone": {
+                    "offset": "+4:00",
+                    "description": "Abu Dhabi, Muscat, Baku, Tbilisi"
+                }
             },
-            "timezone": {
-                "offset": "+4:00",
-                "description": "Abu Dhabi, Muscat, Baku, Tbilisi"
-            }
-        },
-        "email": "eleanor.williamson@example.com",
-        "login": {
-            "uuid": "4f8a3948-7664-40c2-90b5-057e464dffb6",
-            "username": "goldenbird384",
-            "password": "puffer",
-            "salt": "yztbVl2d",
-            "md5": "0e245a2edc44f878a34a606d566096cd",
-            "sha1": "fc9461051cbdd57c22b95c653401f7d235484f83",
-            "sha256": "27ca051118ae4e86f1a7c12dd00abfa771d565646c3fedcdbb96b5b0fda436c2"
-        },
-        "dob": {
-            "date": "1972-12-04T00:56:18.500Z",
-            "age": 50
-        },
-        "registered": {
-            "date": "2020-07-22T05:36:02.229Z",
-            "age": 2
-        },
-        "phone": "041-289-9747",
-        "cell": "081-671-7081",
-        "id": {
-            "name": "PPS",
-            "value": "0379961T"
-        },
-        "picture": {
-            "large": "https://randomuser.me/api/portraits/women/28.jpg",
-            "medium": "https://randomuser.me/api/portraits/med/women/28.jpg",
-            "thumbnail": "https://randomuser.me/api/portraits/thumb/women/28.jpg"
-        },
-        "nat": "IE"
-    }
-],
+            "email": "eleanor.williamson@example.com",
+            "login": {
+                "uuid": "4f8a3948-7664-40c2-90b5-057e464dffb6",
+                "username": "goldenbird384",
+                "password": "puffer",
+                "salt": "yztbVl2d",
+                "md5": "0e245a2edc44f878a34a606d566096cd",
+                "sha1": "fc9461051cbdd57c22b95c653401f7d235484f83",
+                "sha256": "27ca051118ae4e86f1a7c12dd00abfa771d565646c3fedcdbb96b5b0fda436c2"
+            },
+            "dob": {
+                "date": "1972-12-04T00:56:18.500Z",
+                "age": 50
+            },
+            "registered": {
+                "date": "2020-07-22T05:36:02.229Z",
+                "age": 2
+            },
+            "phone": "041-289-9747",
+            "cell": "081-671-7081",
+            "id": 'testUserId',
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/women/28.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/women/28.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/women/28.jpg"
+            },
+            "nat": "IE"
+        }
+    ],
     "info": {
-    "seed": "62f16807fb42933d",
+        "seed": "62f16807fb42933d",
         "results": 1,
         "page": 1,
         "version": "1.4"
-}
+    }
 }
 
 describe('Test optional comments modal', () => {
@@ -154,6 +152,7 @@ describe('Test optional comments modal', () => {
     })
 
     it('renders modal and inputs text', (() => {
+        // rendering the modal alone was causing for some weird behavior, and besides this is more the real flow
         render(<UserInfo />, {wrapper: BrowserRouter});
         const acceptButton = screen.getByRole('button', {name: /Accept/i});
         fireEvent.click(acceptButton);
