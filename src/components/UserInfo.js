@@ -23,6 +23,22 @@ export function UserInfo(props) {
         setIsOpen(false);
     }
 
+    // would want to put api stuff in a yml or env file
+    const getNewUser = () => {
+        axios.get(`https://randomuser.me/api/`)
+            .then(res => {
+                const response = res.data?.results?.length > 0 ? res.data.results[0] : {};
+                const temp = {...response, "id": nanoid()};
+                setUser(temp);
+                setUserLocation(response?.location);
+                localStorage.setItem('currentUser', JSON.stringify(temp));
+            })
+    }
+
+    // this useEffect is for the main logic of the app, basically checks that there isn't a userId set, because if
+    // there is that means it's navigating from the previous candidate page, in which case it will find the user by
+    // id from local storage, OR the user could be navigating back from the previous candidate page, in which case
+    // we maintain a currentUser in local storage so users can navigate about
     useEffect(() => {
         if(!userId && !!JSON.parse(localStorage.getItem('currentUser'))) {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -36,15 +52,7 @@ export function UserInfo(props) {
                 setUserLocation(foundUser.location);
                 localStorage.setItem('currentUser', JSON.stringify(foundUser));
             } else {
-                    axios.get(`https://randomuser.me/api/`)
-                        .then(res => {
-                            const response = res.data?.results?.length > 0 ? res.data.results[0] : {};
-                            const temp = {...response, "id": nanoid()};
-                            setUser(temp);
-                            setUserLocation(response?.location);
-                            localStorage.setItem('currentUser', JSON.stringify(temp));
-                        })
-
+                getNewUser();
             }
         }
     }, [user, userId])
@@ -54,6 +62,7 @@ export function UserInfo(props) {
         setUser({...user, "accepted": event.target.title === 'Accept'});
     }
 
+    // here sits the logic that essentially "submits" a user after review
     const handleOptionalComments = (comments) => {
         setIsOpen(false);
         // because state doesn't necessarily update right away and from this point on we're only adding to local storage

@@ -2,7 +2,7 @@ import {
     Box, Button,
     Card,
     CardContent,
-    Grid, IconButton,
+    Grid,
     List,
     ListItem,
     Typography,
@@ -13,6 +13,9 @@ export function CandidatesList(props) {
     const candidates = JSON.parse(localStorage.getItem('persons'));
     const navigate = useNavigate()
 
+    // all I'm doing here is getting the list of users from local storage and then taking each user and mapping them
+    // to a card component within a list. Where each card will have some basic user information and the whole card
+    // will be clickable
     return (
         <>
             <Grid container spacing={2} sx={{mt: 1, mb: 1, alignItems: 'center', justifyContent: 'center', width: {xs: '95vw', sm: '80vw', md:'50vw'}}}>
@@ -31,7 +34,6 @@ export function CandidatesList(props) {
                                     <CardContent>
                                         <Grid container spacing={1} direction="row" alignItems="flex-start">
                                             <Grid container item justifyContent={"center"} xs={3}>
-                                                {/*todo change img format stuff*/}
                                                 <Box component={'img'} sx={{
                                                     height: 50,
                                                     width: 50,

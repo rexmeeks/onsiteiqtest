@@ -18,6 +18,7 @@ export function OptionalComments(props) {
 
     const [comments, setComments] = useState(null)
 
+    // pretty simple modal that just lets you type in a comment about the viewed user
     return (
         <>
             <Box sx={style}>
